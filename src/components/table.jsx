@@ -1,8 +1,8 @@
 import TableItem from './tableItem'
 
-function Table({ records }) {
-    const dataItems = records.map((item) => {
-        return <TableItem item={ item }/>
+function Table({ records, edit }) {
+    const dataItems = records.map((item, i) => {
+        return <TableItem item={ item } confirmEdit={ (desc) => edit(i, desc) }/>
     })
     return (
         <table>

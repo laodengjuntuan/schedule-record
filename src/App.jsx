@@ -20,6 +20,9 @@ function App() {
     }
   }
 
+  function edit(i, desc) {
+    dispatch({ type: 'edit', index: i, desc: desc })
+  }
   return (
     <>
       <h1>My spending record</h1>
@@ -28,7 +31,7 @@ function App() {
         { isRunning && <div className='flow-wave'></div> }
       </div>
       
-      <Table records={ records } />
+      <Table records={ records } edit={ edit }/>
     </>
   )
 }
@@ -46,6 +49,11 @@ function recordsReducer(records, action) {
       let latestTableItem = records.at(-1)
       latestTableItem.endTime = dayjs().format("HH:mm")
       latestTableItem.duration = dayjs(latestTableItem.endTime, "HH:mm").diff(dayjs(latestTableItem.startTime, "HH:mm"), 'minute')
+      return records
+    }
+    case 'edit': {
+      let latestTableItem = records[action.index]
+      latestTableItem.description = action.desc
       return records
     }
   }

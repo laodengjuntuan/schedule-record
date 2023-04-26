@@ -2,19 +2,7 @@ import { WritingFluently } from '@icon-park/react'
 import './tableItem.css'
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
-
-function Dialog({ children, confirm, cancel }) {
-  return (
-    <div className='pop-up'>
-      { children }
-      {/* <textarea className='text-area'></textarea> */}
-      <div className='btn-group flex'>
-        <button className='btn' onClick={confirm}>确定</button>
-        <button className='btn' onClick={cancel}>取消</button>
-      </div>
-    </div>
-  )
-}
+import Dialog from './dialog'
 
 function TableItem({ item, confirmEdit }) {
   const [isShowPopUp, setIsShowPopUp] = useState(false)
